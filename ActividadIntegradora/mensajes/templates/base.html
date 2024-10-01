@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>{% block title %}My Website{% endblock %}</title>
+    </head>
+
+    <body>
+
+    <header>
+        {% if user.is_authenticated %}
+            <p>Hola {{user.username}}</p>
+            <a href="{% url 'logout' %}">Log out</a>
+        {% else %}
+            <p> No estas loggeado.</p>
+            <a href="{% url 'login' %}">Log In</a>
+        {% endif %}
+        <br>
+        <a href="{% url 'registro' %}">Registrarse</a>
+        
+        <h1>{% block header %}Welcome to My Website{% endblock %}</h1>
+    </header>
+
+    <div class="navbar">
+        {% include 'navbar.html' %}
+    </div>
+
+    <div class="content">
+        {% block content %} {% endblock %}
+    </div>
+
+    <footer>
+        <p>&copy; 2024 - Tablero de Mensajes - gecare@udc.edu.ar</p>
+    </footer>
+
+    </body>
+</html>
